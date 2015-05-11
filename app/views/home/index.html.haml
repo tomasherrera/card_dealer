@@ -1,0 +1,26 @@
+.container{"ng-controller" => "HomeController as home"}
+  .well
+    %h2
+      CustomInk Challenge
+    %br
+    %strong
+      %h3 Deck of Cards
+      Number of cards:
+    {{deck.card_count}}
+    %hr
+    %button.btn-info{"type" => "button", "ng-click" => "first_card_dealt = true"}
+      Get First Card
+    %button.btn-info{"type" => "button", "ng-click" => "shuffle_deck(deck); first_card_dealt = false"}
+      Shuffle Deck
+    %button.btn-info{"type" => "button", "ng-click" => "get_random_card(deck.cards); random_card_dealt = true"}
+      Get Random Card from Deck
+    %hr
+      .table
+        %p{"ng-show" => "first_card_dealt"}
+          First Card of Deck:
+          {{deck.cards[0].value | uppercase}} of
+          %img.suit{"ng-src" => "{{get_suit_url(deck.cards[0].suit)}}"}
+        %p{"ng-show" => "random_card_dealt"}
+          Random Card:
+          {{random_card.value | uppercase}} of
+          %img.suit{"ng-src" => "{{get_suit_url(random_card.suit)}}"}
